@@ -1,6 +1,4 @@
-#import numpy as np
-#import matplotlib.pyplot as plt
-#from matplotlib.patches import Polygon
+
 
 
 class diffenrentialregning:
@@ -8,8 +6,7 @@ class diffenrentialregning:
         self.a = a
         self.b = b
         self.c = c
-        #self.x = x
-        #self.DeltaX = DeltaX
+
 
     def func(self, q):
         return (self.a * q **2 + self.b * q + self.c)
@@ -20,7 +17,7 @@ class diffenrentialregning:
 
         while True:
             a = (self.func(x + DeltaX) - self.func(x)) / ((x + DeltaX) - x)
-            # print(DeltaX)
+
             print(a)
             DeltaX = DeltaX / 2
             n += 1
