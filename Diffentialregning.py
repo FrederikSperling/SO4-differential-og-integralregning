@@ -9,10 +9,10 @@ class diffenrentialregning:
 
     # Metode der styrer hvilken formel vi skal bruge.
     # Lige nu har vi kun formel der hedder "ax^2 + bx + c"
-    def func(self, q):
-        return (self.a * q **2 + self.b * q + self.c)
+    def func(self, xformel):
+        return (self.a * xformel **2 + self.b * xformel + self.c)
 
-    def Differential(self, x, DeltaX):
+    def DLommeregner(self, x, DeltaX):
         n = 0
         self.x = x
         self.DeltaX = DeltaX
@@ -24,7 +24,7 @@ class diffenrentialregning:
             # Ved at dividere DeltaX med 2 hele tiden får vi den til at gå mod 0
             # Dette betyder at vi kommer tættere på at have den tangent der går igennem x
 
-            print(a)
+            #print(a)
             DeltaX = DeltaX / 2
 
             # Vi laver en variabel der hedder n så vi kører vores while loop 40 gange
@@ -37,4 +37,4 @@ class diffenrentialregning:
 
 
 objekt1 = diffenrentialregning(6, 4, 2)
-objekt1.Differential(4,7)
+objekt1.DLommeregner(4,7)
