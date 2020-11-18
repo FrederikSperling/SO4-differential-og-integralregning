@@ -1,49 +1,43 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
+from Integralregning import *
+from Diffentialregning import *
 
+Integral = Integralregning(-10, 10, 200, 2, 6, 5, 2)
 
-class plot:
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
-        self.x = np.linspace(0, 10)
+class Testplot:
+    def __init__(self):
+        Integral.ILommeregner()
+
+        #Her ændres minimum- og maximums x-værdi på grafen. Ud fra det laver den korresponderende y-akse.
+        #Grunden til det første if statement er bare at a og b bare sådan at de har lige langt fra rammen af grafen
+        if Integral.a > Integral.b:
+            if Integral.a < 0:
+                self.x = np.linspace(Integral.a * 1.5, Integral.b + Integral.a * 0.5)
+            else:
+                self.x = np.linspace(0, Integral.b * Integral.a * 0.5)
+        else:
+            if Integral.a < 0:
+                self.x = np.linspace(Integral.a * 1.5, Integral.b + Integral.b * 0.5)
+            else:
+                self.x = np.linspace(0, Integral.b * Integral.b * 0.5)
+
         self.y = self.func(self.x)
-
         fig, ax = plt.subplots()
         ax.plot(self.x, self.y, 'r', linewidth=2)
         ax.set_ylim(bottom=0)
-
-        # Make a shaded region
-        # ix = np.linspace(a, b)
-        # iy = func(ix)
-        # verts = [(a, 0), *zip(ix, iy), (b, 0)]
-        # poly = Polygon(verts, facecolor='0.9', edgecolor='0.5')
-        # ax.add_patch(poly)
-
-        #ax.text(0.5 * (self.a + self.b), 30, r"$\int_a^b f(x)\mathrm{d}x$", horizontalalignment='center', fontsize=20)
-
-        fig.text(0.9, 0.05, '$x$')
-        fig.text(0.1, 0.9, '$y$')
-
-        ax.spines['right'].set_visible(False)
-        ax.spines['top'].set_visible(False)
-        ax.xaxis.set_ticks_position('bottom')
-
-        ax.set_xticks((self.a, self.b))
-        ax.vlines(x=[self.a, self.b], ymin=0, ymax=[self.func(self.a), self.func(self.b)])
-        # plt.axvline(x=a,ymin=0,ymax=func(a))
-        # plt.axvline(x=b,ymin=0,ymax=func(b))
-        ax.set_xticklabels(('$a$', '$b$'))
-        ax.set_yticks([])
-
+        ax.set_xticks((Integral.a, Integral.b))
+        ax.vlines(x=[Integral.a, Integral.b], ymin=0, ymax=[self.func(Integral.a), self.func(Integral.b)])
+        ax.set_xticklabels(('$a: $' + str(Integral.a), '$b: $' + str(Integral.b)))
+        ax.text(0.5 * (Integral.a + Integral.b), 100, r"$\int_a^b f(x)\mathrm{d}x$", horizontalalignment='center', fontsize=20)
+        ax.text(0.5 * (Integral.a + Integral.b), 200, r"Areal er: "+str(Integral.sumAreal), horizontalalignment='center',
+                fontsize=10)
         plt.show()
 
     def func(self, x):
-        return 3 * x**2
+        return (Integral.A * x ** Integral.potens + Integral.B * x + Integral.C)
 
-
-classplot = plot(2, 9)
 
 
 

@@ -1,6 +1,6 @@
 
 
-class diffenrentialregning:
+class Differentialregning:
     def __init__(self, a, b, c):
         self.a = a
         self.b = b
@@ -35,5 +35,5 @@ class diffenrentialregning:
 
 
 
-objekt1 = diffenrentialregning(6, 4, 2)
+objekt1 = Differentialregning(6, 4, 2)
 objekt1.DLommeregner(4,7)
