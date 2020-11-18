@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
 
 
-
 class plot:
     def __init__(self, a, b):
         self.a = a
@@ -41,9 +40,11 @@ class plot:
         plt.show()
 
     def func(self, x):
-        return 3 * x * x
+        return 3 * x**2
 
 
 classplot = plot(2, 9)
+
+
 
 

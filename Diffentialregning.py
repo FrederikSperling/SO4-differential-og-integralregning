@@ -15,6 +15,8 @@ class diffenrentialregning:
 
     def Differential(self, x, DeltaX):
         n = 0
+        self.x = x
+        self.DeltaX = DeltaX
 
         # Vi bruger linjens ligning mellem 2 punkter for at finde hældningen på den linje der går igennem x og x + DeltaX
         while True:
@@ -23,8 +25,10 @@ class diffenrentialregning:
             # Ved at dividere DeltaX med 2 hele tiden får vi den til at gå mod 0
             # Dette betyder at vi kommer tættere på at have den tangent der går igennem x
 
-            #print(a)
+            print(a)
             DeltaX = DeltaX / 2
+
+            # Vi laver en variabel der hedder n så vi kører vores while loop 40 gange
             n += 1
             if n == 40:
                 break
