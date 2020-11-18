@@ -7,8 +7,8 @@ class integralregning:
         self.A = A
         self.B = B
         self.C = C
-        xstart = self.a
-        self.xstart = xstart
+        x = self.a
+        self.x = x
 
     def func(self,q):
         #return 3 * q + 5
@@ -29,8 +29,8 @@ class integralregning:
 
         while True:
             #print (DeltaX)
-            self.xstart += DeltaX
-            y = self.func(self.xstart)
+            self.x += DeltaX
+            y = self.func(self.x)
             streg = y * DeltaX
             print(streg)
             sum += streg
