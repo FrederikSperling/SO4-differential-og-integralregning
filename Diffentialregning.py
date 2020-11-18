@@ -6,7 +6,6 @@ class diffenrentialregning:
         self.b = b
         self.c = c
 
-
     # Metode der styrer hvilken formel vi skal bruge.
     # Lige nu har vi kun formel der hedder "ax^2 + bx + c"
     def func(self, xformel):
