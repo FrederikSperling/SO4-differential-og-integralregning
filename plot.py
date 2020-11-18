@@ -4,12 +4,11 @@ from matplotlib.patches import Polygon
 from Integralregning import *
 from Diffentialregning import *
 
-Integral = Integralregning(-10, 10, 200, 2, 6, 5, 2)
+Integral = Integralregning(-10, 10, 10000, 2, 6, 5, 2)
 
 class Testplot:
     def __init__(self):
         Integral.ILommeregner()
-
         #Minimum- og maximum x-værdi på grafen. Ud fra det laver den korresponderende y-akse.
         #Grunden til den første if statement er bare at a og b bare sådan at de har lige langt fra rammen af grafen
         if Integral.a > Integral.b:

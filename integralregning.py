@@ -36,7 +36,6 @@ class Integralregning:
             #Her laver vi bare en tæller som når den rammer det antal søgler vi har defineret stopper while loopet og der ved vi at vores x-værdi = b.
             n += 1
             if n == self.streger:
+                print(self.sumAreal)
                 #Så printer vi summen af alle søjlerne og breaker loopet.
                 break
-
-
