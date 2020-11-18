@@ -22,7 +22,7 @@ class integralregning:
 
         self.DeltaX = DeltaX
         self.Areal = Areal
-        self.sum = sum
+
 
 
         DeltaX = (self.b - self.a) / self.streger
@@ -42,8 +42,7 @@ class integralregning:
             n += 1
             if n == self.streger:
                 #Så printer vi summen af alle søjlerne og breaker loopet.
-                print(sum)
-                return sum
+                self.sum = sum
                 break
 
 #Desto mere præcis svar man gerne have, jo højere antal søjler (streg) skriver man bare ind i klassen hvor mange man vil have.
