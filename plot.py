@@ -10,8 +10,8 @@ class Testplot:
     def __init__(self):
         Integral.ILommeregner()
 
-        #Her ændres minimum- og maximums x-værdi på grafen. Ud fra det laver den korresponderende y-akse.
-        #Grunden til det første if statement er bare at a og b bare sådan at de har lige langt fra rammen af grafen
+        #Minimum- og maximum x-værdi på grafen. Ud fra det laver den korresponderende y-akse.
+        #Grunden til den første if statement er bare at a og b bare sådan at de har lige langt fra rammen af grafen
         if Integral.a > Integral.b:
             if Integral.a < 0:
                 self.x = np.linspace(Integral.a * 1.5, Integral.b + Integral.a * 0.5)
