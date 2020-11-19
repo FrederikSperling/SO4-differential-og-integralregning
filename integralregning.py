@@ -16,7 +16,6 @@ class Integralregning:
 
     def ILommeregner(self):
         self.DeltaX = 0
-        self.Areal = 0
         self.DeltaX = (self.b - self.a) / self.streger
 
         n = 0
