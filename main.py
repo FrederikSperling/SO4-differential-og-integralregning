@@ -5,5 +5,7 @@ from integralregning import *
 from Differentialregning import *
 from plot import *
 
-grafclass = graf()
+graf = graf()
+graf.differentialregninggraf()
+graf.integralregninggraf()
 
