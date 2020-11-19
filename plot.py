@@ -26,13 +26,10 @@ class graf:
         ax.text(0.5 * (Integral.a + Integral.b), 100, r"$\int_a^b f(x)\mathrm{d}x$", horizontalalignment='center', fontsize=20)
         ax.text(0.5 * (Integral.a + Integral.b), 200, r"Areal er: "+str(Integral.sumAreal), horizontalalignment='center',
                 fontsize=10)
-
         plt.xlabel('hej2')
         plt.ylabel('hej')
-
         ax.xaxis.label.set_color('r')
         ax.yaxis.label.set_color('r')
-
         plt.fill_between(self.x, self.y, -10, color='r', alpha=0.2)
         ax.grid(True, color='grey', linestyle='-', linewidth=1)
         plt.show()
