@@ -6,6 +6,7 @@ import sympy as sp
 from numpy import linalg
 from sympy import Eq, solve_linear_system, Matrix
 from sympy.interactive import printing
+import math
 
 
 
@@ -23,5 +24,17 @@ class fx():
         #if "h" in xsplit2:
             #print("hej")
 
-func = fx()
-func.func()
+def skaeringmedx():
+    xrandom = 10
+    while True:
+        if round(xrandom, 4) == round((6 * xrandom ** 2 - 33) / - 10, 4):
+            print("nice!"+ str(xrandom))
+            break
+        else:
+            xrandom -= 0.0001
+            print(xrandom)
+
+skaeringmedx()
+
+#func = fx()
+#func.func()

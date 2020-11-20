@@ -26,9 +26,8 @@ class graf:
         #ax.set_xticks((Integral.a, Integral.b)
         ax.vlines(x=[Integral.a, Integral.b], ymin=0, ymax=[Integral.func(Integral.a), Integral.func(Integral.b)], colors='blue')
         #ax.set_xticklabels(('$a: $' + str(Integral.a), '$b: $' + str(Integral.b)))
-        ax.text(0.5 * (Integral.a + Integral.b), 100, r"$\int_a^b f(x)\mathrm{d}x$", horizontalalignment='center', fontsize=20)
-        ax.text(0.5 * (Integral.a + Integral.b), 200, r"Areal er: "+str(Integral.sumAreal), horizontalalignment='center',
-                fontsize=10)
+        ax.text(0.5 * (Integral.a + Integral.b), 100, r"$\int_a^b f(x)\mathrm{d}x$", ha='center', fontsize=20)
+        ax.text(0.5 * (Integral.a + Integral.b), 200, r"Areal er: "+str(Integral.sumAreal), ha='center', va='center', fontsize=10,)
         plt.xlabel('x')
         plt.ylabel('y')
         ax.xaxis.label.set_color('black')

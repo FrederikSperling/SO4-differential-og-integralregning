@@ -1,3 +1,4 @@
+import random
 class Integralregning:
     def __init__(self, a, b, streger, A, B, C, potens):
         self.a = a
@@ -38,5 +39,14 @@ class Integralregning:
                 #Så printer vi summen af alle søjlerne og breaker loopet.
                 break
 
-
+    def skæringmedx(self):
+        xrandom = random.randint(-10, 10)
+        while True:
+            if xrandom == (self.A * xrandom **2+self.C)/-self.B:
+                print(xrandom)
+                break
+            else:
+                xrandom += 0.1
+        while True:
+            pass
 Integral = Integralregning(-10, 10, 100, 1, 6, 5, 2)
