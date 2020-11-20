@@ -2,10 +2,9 @@ import numpy as np
 from integralregning import *
 import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
-Integral = Integralregning(-10, 10, 100, 1, 6, 5, 2)
 
 class Differentialregning:
-    def __init__(self, ):
+    def __init__(self):
         pass
         #self.a = a
         #self.b = b
@@ -14,7 +13,7 @@ class Differentialregning:
     # Metode der styrer hvilken formel vi skal bruge.
     # Lige nu har vi kun formel der hedder "ax^2 + bx + c"
     def func(self, x):
-        return x**2+2*x+100
+        return x**2+1*x+10
         #return (Integral.A * xformel ** Integral.potens + Integral.B * xformel + Integral.C)
 
     def tangent(self, x):
@@ -41,3 +40,6 @@ class Differentialregning:
                 self.b = self.func(self.x) - self.a * self.x
                 print("Skæringspunktet for differentialregningskurven er:", self.b)
                 break
+
+Differential = Differentialregning()
+Differential.DLommeregner(100,7)

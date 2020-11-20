@@ -1,17 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
-from integralregning import *
-from Differentialregning import *
+from integralregning import Integral
+from Differentialregning import Differential
 
 #Desto mere præcis svar man gerne have, jo højere antal søjler (streg) skriver man bare ind i klassen hvor mange man vil have.
 #Hvis man gerne vil have et meget præcist svar kommer det til at vente lidt fordi det tager en del tid at beregne for computeren.
 #F.eks. 1000 søjler = 1 sekund, 100.000.000 = 20 min, 1.000.000 = 10 sekunder
 #Man kan også fjerne print for x, y og streg hvis det skal gå hurtigere.
 
-Integral = Integralregning(-10, 10, 100, 1, 6, 5, 2)
-Differential = Differentialregning()
-Differential.DLommeregner(100,7)
 Integral.ILommeregner()
 
 class graf:
@@ -22,9 +19,9 @@ class graf:
         #Minimum- og maximum x-værdi på grafen. Ud fra det laver den korresponderende y-akse.
         #Grunden til den første if statement er bare at a og b bare sådan at de har lige langt fra rammen af grafen
         fig, ax = plt.subplots()
-        xstartogslut = np.linspace(Integral.a - Integral.b * 0.5, Integral.b * 1.5)
-        fx = Integral.func(xstartogslut)
-        ax.plot(xstartogslut, fx, 'black', linewidth=2)
+        xstarttilslut = np.linspace(Integral.a - Integral.b * 0.5, Integral.b * 1.5)
+        fx = Integral.func(xstarttilslut)
+        ax.plot(xstarttilslut, fx, 'black', linewidth=2)
         ax.set_ylim(bottom=0)
         #ax.set_xticks((Integral.a, Integral.b)
         ax.vlines(x=[Integral.a, Integral.b], ymin=0, ymax=[Integral.func(Integral.a), Integral.func(Integral.b)], colors='blue')
@@ -44,11 +41,11 @@ class graf:
 
     def differentialregninggraf(self):
         fig, ax = plt.subplots()
-        xstartogslut = np.linspace(0, Differential.x * 2)
-        fx = Differential.func(xstartogslut)
-        fx2 = Differential.tangent(xstartogslut)
-        ax.plot(xstartogslut, fx, 'black', linewidth=2)
-        ax.plot(xstartogslut, fx2, 'black', linewidth=2)
+        xstarttilslut = np.linspace(0, Differential.x * 2)
+        fx = Differential.func(xstarttilslut)
+        fx2 = Differential.tangent(xstarttilslut)
+        ax.plot(xstarttilslut, fx, 'black', linewidth=2)
+        ax.plot(xstarttilslut, fx2, 'black', linewidth=2)
         ax.text(Differential.x, Differential.func(Differential.x * 0.7), "Hældningen for punktet er "+ str(Differential.a), horizontalalignment='center', fontsize=10)
         plt.plot(Differential.x, Differential.func(Differential.x), 'r', marker='o', alpha=1)
         plt.xlabel('x')

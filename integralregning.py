@@ -1,4 +1,3 @@
-
 class Integralregning:
     def __init__(self, a, b, streger, A, B, C, potens):
         self.a = a
@@ -38,3 +37,6 @@ class Integralregning:
                 print("Arealet for integralkurven er:", self.sumAreal)
                 #Så printer vi summen af alle søjlerne og breaker loopet.
                 break
+
+
+Integral = Integralregning(-10, 10, 100, 1, 6, 5, 2)
