@@ -42,13 +42,13 @@ class GUI(tk.Frame):
                                            "\n(jo flere du vælger des mere præcist)\n 10.000 anbefales").pack()
         self.Antalsteger = tk.Entry(self.integralwindow, width=30)
         self.Antalsteger.pack()
-        self.beregn_intetal = tk.Button(self.integralwindow, text="Beregn",command=self.on_beregn_integral).pack()
-        self.mainmenu = tk.Button(self.integralwindow, text="Tilbage til hovedmenu", command=self.integralwindow.destroy,fg="red").pack()
+        self.beregn_intetal = tk.Button(self.integralwindow, fg="green" , text="Beregn", command=self.on_beregn_integral).pack()
+        tk.Button(self.integralwindow, text="Tilbage til hovedmenu", command=self.integralwindow.destroy, fg="red").pack()
 
     def on_beregn_integral(self):
-        kk = self.Antalsteger.get()
-        uu = self.indtast_integral_func.get()
-        print(uu,kk)
+        self.steger = self.Antalsteger.get()
+        self.integral_forskrift = self.indtast_integral_func.get()
+        print("Antallet af streger:", self.steger, "\nFunktionsforskrift:", self.integral_forskrift)
 
 
 
@@ -57,14 +57,24 @@ class GUI(tk.Frame):
         self.differentialwindow.title("Differentialregning")
         self.differentialwindow.geometry("400x300")
 
+        tk.Label(self.differentialwindow, text="Indtast x-værdien for det punkt du ønsker at finde tangenten for").pack()
+        self.indtast_x = tk.Entry(self.differentialwindow, width=30)
+        self.indtast_x.pack()
+
         tk.Label(self.differentialwindow, text="Indtast din funktion").pack()
-        self.indtast_diff_func = tk.Entry(self.differentialwindow, width=30).pack()
-        self.beregn_diff = tk.button(self.differentialwindow,text="beregn", command=self.on_beregn_diff, padx=10, pady=10).pack()
+        self.indtast_diff_func = tk.Entry(self.differentialwindow, width=30)
+        self.indtast_diff_func.pack()
+
+        self.beregn_diff = tk.Button(self.differentialwindow, fg="green", text="Beregn", command=self.on_beregn_diff, padx=10, pady=10).pack()
+        tk.Button(self.differentialwindow, text="Tilbage til hovedmenu", command=self.differentialwindow.destroy, fg="red").pack()
 
     def on_beregn_diff(self):
-        pass
+        self.diff_forskrift = self.indtast_diff_func.get()
+        self.x = self.indtast_x.get()
+        print("Antallet af streger:", self.diff_forskrift, "\nFunktionsforskrift:", self.x)
 
-
+# TODO: 1. Prøve at lave gridsizer til mainmenu, 2. Få sympy til at virke så vi kan indtaste en funktionsforskrift direkte
+# TODO: 3. Try/except for indputs + fejlmeldinger, 4. Plotte vores funktioner
 
 
 
