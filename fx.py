@@ -33,6 +33,7 @@ def skaeringmedx():
         else:
             xrandom -= 0.0001
             print(xrandom)
+            #
 
 skaeringmedx()
 
