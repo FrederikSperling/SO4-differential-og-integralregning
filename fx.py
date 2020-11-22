@@ -7,7 +7,7 @@ from numpy import linalg
 from sympy import Eq, solve_linear_system, Matrix
 from sympy.interactive import printing
 import math
-
+import time
 
 
 class fx():
@@ -15,27 +15,33 @@ class fx():
 
         pass
 
-    def func(self):
-        x = input("Skriv en funktion")
-        xsplit = x.split("x")
-        print(xsplit)
-        #xsplit2 = [hej + "h " for hej in spaceremove]
-        #print(xsplit2)
-        #if "h" in xsplit2:
-            #print("hej")
+
 
 def skaeringmedx():
-    xrandom = 10
+    xrandom = -10
+    decimaler = 5
+    a = 8.5
+    b = 6
+    c = -6
+    potens = 2
     while True:
-        if round(xrandom, 4) == round((6 * xrandom ** 2 - 33) / - 10, 4):
+        if round(xrandom, decimaler) == round((a * xrandom ** potens + c) / - b, decimaler):
             print("nice!"+ str(xrandom))
             break
         else:
-            xrandom -= 0.0001
             print(xrandom)
-            #
+            xrandom += 0.00001
 
-skaeringmedx()
+fx = input("Enter a Polynomial: ")
+def func(x):
+    return eval(fx.replace('x', str(x)))
+y = func(10)
+print(y)
 
-#func = fx()
-#func.func()
+#fx = input("Enter a Polynomial: ")
+#x = float(input("At wich position should the polynomial be evaluated: "))
+#print(eval(fx.replace('x', str(x))))
+
+#polynomial = eval(fx.replace('x', str(x)))
+
+

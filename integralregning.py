@@ -39,14 +39,51 @@ class Integralregning:
                 #Så printer vi summen af alle søjlerne og breaker loopet.
                 break
 
-    def skæringmedx(self):
-        xrandom = random.randint(-10, 10)
+    def skaeringmedx(self, xrandom):
+        self.xrandom = xrandom
+        decimaler = 5
+        x = round((self.A * self.xrandom ** self.potens + self.C) / - self.B, decimaler)
+        self.xrandom = random.randint(-255, 0)
         while True:
-            if xrandom == (self.A * xrandom **2+self.C)/-self.B:
-                print(xrandom)
+            if round(self.xrandom, decimaler) == round(x):
+                print("nice!" + str(self.xrandom))
                 break
             else:
-                xrandom += 0.1
+                self.xrandom += 0.0001
+                round(self.xrandom, decimaler)
+                x = round((self.A * self.xrandom ** self.potens + self.C) / - self.B, decimaler)
+                if self.xrandom > x:
+                    deltax = self.xrandom - x
+                else:
+                    deltax = x - self.xrandom
+                print(deltax)
+                if deltax > 10:
+                    self.xrandom = random.randint(0, 255)
+
+        self.xrandom2 = xrandom
+        x2 = round((self.A * self.xrandom2 ** self.potens + self.C) / - self.B, decimaler)
+
         while True:
-            pass
-Integral = Integralregning(-10, 10, 100, 1, 6, 5, 2)
+            if round(self.xrandom2, decimaler) == round(x2):
+                #if self.xrandom2 <= self.xrandom and self.xrandom2 >= self.xrandom - 0.1:
+                    #self.xrandom2 = random.randint(0, 255)
+                    #print("hej")
+                    #self.skaeringmedx(200)
+                #else:
+                print("nice2!" + str(self.xrandom2))
+                break
+            else:
+                self.xrandom2 -= 0.0001
+                # round(self.xrandom, decimaler)
+                x2 = round((self.A * self.xrandom2 ** self.potens + self.C) / - self.B, decimaler)
+                print(self.xrandom2)
+                if self.xrandom2 > x2:
+                    deltax2 = self.xrandom2 - x2
+                else:
+                    deltax2 = x2 - self.xrandom2
+
+                #print(deltax2)
+                if deltax2 > 10:
+                    self.xrandom2 = random.randint(0, 255)
+
+Integral = Integralregning(-10, 10, 100, 4, 7, -5, 2)
