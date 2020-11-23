@@ -95,4 +95,6 @@ class Integralregning:
                 if deltax2 > 10:
                     self.xrandom2 = random.randint(0, 255)
 
-Integral = Integralregning(0, 10, int(app.steger), 4, 7, -5, 2)
+if app.pog == 0:
+    Integral = Integralregning(0, 10, int(app.steger), 4, 7, -5, 2)
+    Integral.ILommeregner()
