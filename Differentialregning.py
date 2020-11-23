@@ -1,7 +1,4 @@
-import numpy as np
-from integralregning import *
-import matplotlib.pyplot as plt
-from matplotlib.patches import Polygon
+import sympy
 from GUI import *
 
 class Differentialregning:

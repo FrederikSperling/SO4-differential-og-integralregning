@@ -3,15 +3,11 @@ import sympy
 from GUI import *
 
 class Integralregning:
-    def __init__(self, a, b, streger, A, B, C, potens):
+    def __init__(self, a, b, streger):
         self.a = a
         self.b = b
         self.streger = streger
-        self.A = A
-        self.B = B
-        self.C = C
         self.x = self.a
-        self.potens = potens
         self.sumAreal = 0
 
     #def func1(self, xformel):
@@ -48,53 +44,11 @@ class Integralregning:
                 #Så printer vi summen af alle søjlerne og breaker loopet.
                 break
 
-    def skaeringmedx(self, xrandom):
-        self.xrandom = xrandom
-        decimaler = 5
-        x = round((self.A * self.xrandom ** self.potens + self.C) / - self.B, decimaler)
-        self.xrandom = random.randint(-255, 0)
-        while True:
-            if round(self.xrandom, decimaler) == round(x):
-                #print("nice!" + str(self.xrandom))
-                break
-            else:
-                self.xrandom += 0.0001
-                round(self.xrandom, decimaler)
-                x = round((self.A * self.xrandom ** self.potens + self.C) / - self.B, decimaler)
-                if self.xrandom > x:
-                    deltax = self.xrandom - x
-                else:
-                    deltax = x - self.xrandom
-                #print(deltax)
-                if deltax > 10:
-                    self.xrandom = random.randint(0, 255)
-
-        self.xrandom2 = xrandom
-        x2 = round((self.A * self.xrandom2 ** self.potens + self.C) / - self.B, decimaler)
-
-        while True:
-            if round(self.xrandom2, decimaler) == round(x2):
-                #if self.xrandom2 <= self.xrandom and self.xrandom2 >= self.xrandom - 0.1:
-                    #self.xrandom2 = random.randint(0, 255)
-                    #print("hej")
-                    #self.skaeringmedx(200)
-                #else:
-                #print("nice2!" + str(self.xrandom2))
-                break
-            else:
-                self.xrandom2 -= 0.0001
-                # round(self.xrandom, decimaler)
-                x2 = round((self.A * self.xrandom2 ** self.potens + self.C) / - self.B, decimaler)
-                #print(self.xrandom2)
-                if self.xrandom2 > x2:
-                    deltax2 = self.xrandom2 - x2
-                else:
-                    deltax2 = x2 - self.xrandom2
-
-                #print(deltax2)
-                if deltax2 > 10:
-                    self.xrandom2 = random.randint(0, 255)
+#Jo mere præcis svar man gerne have, jo højere antal søjler (streg) skriver man bare ind i klassen hvor mange man vil have.
+#Hvis man gerne vil have et meget præcist svar kommer det til at vente lidt fordi det tager en del tid at beregne for computeren.
+#F.eks. 1000 søjler = 1 sekund, 100.000.000 = 20 min, 1.000.000 = 10 sekunder
+#Man kan også fjerne print for x, y og streg hvis det skal gå hurtigere.
 
 if app.pog == 0:
-    Integral = Integralregning(int(app.intervalx1), int(app.intervalx2), int(app.steger), 4, 7, -5, 2)
+    Integral = Integralregning(int(app.intervalx1), int(app.intervalx2), int(app.steger))
     Integral.ILommeregner()

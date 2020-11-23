@@ -1,4 +1,3 @@
-from tkinter import*
 import tkinter as tk
 from tkinter import messagebox, ttk
 
@@ -71,12 +70,6 @@ class GUI(tk.Frame):
         if len(self.intervalx2) == 0:
             tk.messagebox.showwarning(title=None, message="Du skal indtaste det andet tal for dit interval")
         root.destroy()
-
-
-
-
-
-
 
     def on_differentialregning(self):
         self.differentialwindow = tk.Toplevel(root)
