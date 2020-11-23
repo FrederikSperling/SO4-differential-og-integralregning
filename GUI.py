@@ -2,7 +2,6 @@ from tkinter import*
 import tkinter as tk
 from Equation import*
 
-
 class GUI(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
@@ -73,12 +72,10 @@ class GUI(tk.Frame):
         self.x = self.indtast_x.get()
         print("Antallet af streger:", self.diff_forskrift, "\nFunktionsforskrift:", self.x)
 
+
 # TODO: 1. Prøve at lave gridsizer til mainmenu, 2. Få sympy til at virke så vi kan indtaste en funktionsforskrift direkte
 # TODO: 3. Try/except for indputs + fejlmeldinger, 4. Plotte vores funktioner
-
-
 
 root = tk.Tk()
 app = GUI(master=root)
 app.mainloop()
-

@@ -17,12 +17,11 @@ class Integralregning:
         #return (self.A * xformel ** self.potens + self.B * xformel + self.C)
 
     def func(self, x):
-        fx = sympy.sympify(self.inputpol).subs(dict(x=x))
+        fx = sympy.sympify(app.integral_forskrift).subs(dict(x=x))
         return fx
 
 
     def ILommeregner(self):
-        self.inputpol = GUI.integral_forskrift
         self.DeltaX = 0
         self.DeltaX = (self.b - self.a) / self.streger
 
