@@ -1,4 +1,5 @@
 import random
+import sympy
 class Integralregning:
     def __init__(self, a, b, streger, A, B, C, potens):
         self.a = a
@@ -11,10 +12,16 @@ class Integralregning:
         self.potens = potens
         self.sumAreal = 0
 
-    def func(self, xformel):
-        return (self.A * xformel ** self.potens + self.B * xformel + self.C)
+    #def func1(self, xformel):
+        #return (self.A * xformel ** self.potens + self.B * xformel + self.C)
+
+    def func(self, x):
+        fx = sympy.sympify(self.inputpol).subs(dict(x=x))
+        return fx
+
 
     def ILommeregner(self):
+        self.inputpol = input("Polynomial here")
         self.DeltaX = 0
         self.DeltaX = (self.b - self.a) / self.streger
 
@@ -25,6 +32,7 @@ class Integralregning:
             self.x += self.DeltaX
             #Så skal vi finde y-værdien til den korresponderende x-værdi og det kan vi gøre ved at tage functionen til x-værdien
             y = self.func(self.x)
+            print(y)
             #Så finder vi arealet af hver enkelt søjle (vi har bare kaldt den streg) ved at gange vores y-værdi med delta x
             streg = y * self.DeltaX
             #print(y)

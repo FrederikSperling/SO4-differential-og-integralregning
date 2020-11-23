@@ -16,15 +16,12 @@ class graf:
     def __init__(self):
         pass
 
-
-
     def integralregninggraf(self):
-        self.inputpol = input("Polynomial here")
         xlin = np.linspace(Integral.a - Integral.b * 0.5, Integral.b * 1.5)
         ylist = []
         listpos = 0
         for values in xlin:
-            yvalue = self.func(xlin[listpos])
+            yvalue = Integral.func(xlin[listpos])
             ylist.append(yvalue)
             listpos += 1
 
@@ -38,7 +35,7 @@ class graf:
         #fx = Integral.func(xstarttilslut)
         #ax.plot(xstarttilslut, fx, 'black', linewidth=2)
         #x.set_xticks((Integral.a, Integral.b)
-        ax.vlines(x=[Integral.a, Integral.b], ymin=0, ymax=[float(self.func(Integral.a)), float(self.func(Integral.b))], colors='blue')
+        ax.vlines(x=[Integral.a, Integral.b], ymin=0, ymax=[float(Integral.func(Integral.a)), float(Integral.func(Integral.b))], colors='blue')
         #ax.set_xticklabels(('$a: $' + str(Integral.a), '$b: $' + str(Integral.b)))
         #ax.text(0.5 * (Integral.a + Integral.b), 100, r"$\int_a^b f(x)\mathrm{d}x$", ha='center', fontsize=20)
         #ax.text(0.5 * (Integral.a + Integral.b), 200, r"Areal er: "+str(Integral.sumAreal), ha='center', va='center', fontsize=10,)
@@ -68,12 +65,4 @@ class graf:
         ax.yaxis.label.set_color('black')
         ax.grid(True, color='grey', linestyle='-', linewidth=1)
         plt.show()
-
-    def func(self, x):
-        # fx = eval(input.replace('x', str(x)))
-        fx = sympy.sympify(self.inputpol).subs(dict(x=x))
-        return fx
-        # fx = str(sympy.sympify(input).subs(dict(x=x)))
-        # fx2 = eval(fx)
-        # return fx2
 
