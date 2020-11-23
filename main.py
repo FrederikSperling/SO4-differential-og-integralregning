@@ -8,6 +8,7 @@ import sympy
 from plot import *
 app.mainloop()
 
+
 graf = graf()
 graf.differentialregninggraf()
 graf.integralregninggraf()
