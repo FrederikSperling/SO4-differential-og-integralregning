@@ -1,6 +1,7 @@
 import random
 import sympy
 from GUI import *
+
 class Integralregning:
     def __init__(self, a, b, streger, A, B, C, potens):
         self.a = a
@@ -23,7 +24,7 @@ class Integralregning:
 
     def ILommeregner(self):
         self.DeltaX = 0
-        self.DeltaX = (self.b - self.a) / self.streger
+        self.DeltaX = (self.b - self.a) / int(self.streger)
 
         n = 0
         while True:
@@ -35,13 +36,14 @@ class Integralregning:
             #Så finder vi arealet af hver enkelt søjle (vi har bare kaldt den streg) ved at gange vores y-værdi med delta x
             streg = y * self.DeltaX
             #print(y)
-            #print(self.x)
             #print(streg)
+
+
             #Så kan vi finde arealet ved at tage summen af alle søgler.
             self.sumAreal += streg
             #Her laver vi bare en tæller som når den rammer det antal søgler vi har defineret stopper while loopet og der ved vi at vores x-værdi = b.
             n += 1
-            if n == self.streger:
+            if n >= self.streger:
                 print("Arealet for integralkurven er:", self.sumAreal)
                 #Så printer vi summen af alle søjlerne og breaker loopet.
                 break
@@ -53,7 +55,7 @@ class Integralregning:
         self.xrandom = random.randint(-255, 0)
         while True:
             if round(self.xrandom, decimaler) == round(x):
-                print("nice!" + str(self.xrandom))
+                #print("nice!" + str(self.xrandom))
                 break
             else:
                 self.xrandom += 0.0001
@@ -63,7 +65,7 @@ class Integralregning:
                     deltax = self.xrandom - x
                 else:
                     deltax = x - self.xrandom
-                print(deltax)
+                #print(deltax)
                 if deltax > 10:
                     self.xrandom = random.randint(0, 255)
 
@@ -77,13 +79,13 @@ class Integralregning:
                     #print("hej")
                     #self.skaeringmedx(200)
                 #else:
-                print("nice2!" + str(self.xrandom2))
+                #print("nice2!" + str(self.xrandom2))
                 break
             else:
                 self.xrandom2 -= 0.0001
                 # round(self.xrandom, decimaler)
                 x2 = round((self.A * self.xrandom2 ** self.potens + self.C) / - self.B, decimaler)
-                print(self.xrandom2)
+                #print(self.xrandom2)
                 if self.xrandom2 > x2:
                     deltax2 = self.xrandom2 - x2
                 else:
@@ -93,4 +95,4 @@ class Integralregning:
                 if deltax2 > 10:
                     self.xrandom2 = random.randint(0, 255)
 
-Integral = Integralregning(0, 10, 1000, 4, 7, -5, 2)
+Integral = Integralregning(0, 10, int(app.steger), 4, 7, -5, 2)

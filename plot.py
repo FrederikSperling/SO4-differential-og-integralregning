@@ -31,7 +31,7 @@ class graf:
             ylistfill.append(float(Integral.func(xlinfill[listpos])))
             listpos += 1
 
-        print(ylist)
+        #print(ylist)
         fig, ax = plt.subplots()
         ax.plot(xlin, ylist, 'black', linewidth=2)
         #Minimum- og maximum x-værdi på grafen. Ud fra det laver den korresponderende y-akse.

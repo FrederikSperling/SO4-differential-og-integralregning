@@ -32,14 +32,14 @@ class Differentialregning:
             # Ved at dividere DeltaX med 2 hele tiden får vi den til at gå mod 0
             # Dette betyder at vi kommer tættere på at have den tangent der går igennem x
 
-            print(self.a)
+            #print(self.a)
             self.DeltaX = self.DeltaX / 2
 
             # Vi laver en variabel der hedder n så vi kører vores while loop 40 gange
             n += 1
             if n == 40:
                 self.b = self.func(self.x) - self.a * self.x
-                print("Skæringspunktet for differentialregningskurven er:", self.b)
+                #print("Skæringspunktet for differentialregningskurven er:", self.b)
                 break
 
 Differential = Differentialregning()
