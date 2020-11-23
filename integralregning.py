@@ -96,5 +96,5 @@ class Integralregning:
                     self.xrandom2 = random.randint(0, 255)
 
 if app.pog == 0:
-    Integral = Integralregning(0, 10, int(app.steger), 4, 7, -5, 2)
+    Integral = Integralregning(int(app.intervalx1), int(app.intervalx2), int(app.steger), 4, 7, -5, 2)
     Integral.ILommeregner()
