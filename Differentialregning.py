@@ -13,13 +13,14 @@ class Differentialregning:
     # Metode der styrer hvilken formel vi skal bruge.
     # Lige nu har vi kun formel der hedder "ax^2 + bx + c"
     def func(self, x):
-        return x**2+1*x+10
-        #return (Integral.A * xformel ** Integral.potens + Integral.B * xformel + Integral.C)
+        fx = sympy.sympify(self.inputpol).subs(dict(x=x))
+        return fx
 
     def tangent(self, x):
         return self.a * x + self.b
 
     def DLommeregner(self, x, DeltaX):
+        self.inputpol = input("Enter differential polynomial here")
         n = 0
         self.x = x
         self.DeltaX = DeltaX
