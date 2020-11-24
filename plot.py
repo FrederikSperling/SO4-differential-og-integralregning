@@ -1,5 +1,5 @@
-from Differentialregning import *
 from integralregning import *
+from Differentialregning import *
 import numpy as np
 import matplotlib.pyplot as plt
 import sympy
@@ -31,11 +31,6 @@ class graf:
             ax.plot(xlin, ylist, 'black', linewidth=2)
             #Minimum- og maximum x-værdi på grafen. Ud fra det laver den korresponderende y-akse.
             #Grunden til den første if statement er bare at a og b bare sådan at de har lige langt fra rammen af grafen
-            #fig, ax = plt.subplots()
-            #xstarttilslut = np.linspace(Integral.a - Integral.b * 0.5, Integral.b * 1.5)
-            #fx = Integral.func(xstarttilslut)
-            #ax.plot(xstarttilslut, fx, 'black', linewidth=2)
-            #x.set_xticks((Integral.a, Integral.b)
             ax.vlines(x=[Integral.a, Integral.b], ymin=0, ymax=[float(Integral.func(Integral.a)), float(Integral.func(Integral.b))], colors='blue')
             #ax.set_xticklabels(('$a: $' + str(Integral.a), '$b: $' + str(Integral.b)))
             #ax.text(0.5 * (Integral.a + Integral.b), 100, r"$\int_a^b f(x)\mathrm{d}x$", ha='center', fontsize=20)
@@ -51,10 +46,11 @@ class graf:
 
     def differentialregninggraf(self):
         if app.pog == 1:
-            xlin = np.linspace(0, 100)
+            xlin = np.linspace(Differential.x-100, Differential.x+100)
             ylist = []
             ylist2 = []
             listpos = 0
+
             for values in xlin:
                 yvalue = Differential.func(xlin[listpos])
                 yvalue2 = Differential.tangent(xlin[listpos])
@@ -73,3 +69,12 @@ class graf:
             ax.yaxis.label.set_color('black')
             ax.grid(True, color='grey', linestyle='-', linewidth=1)
             plt.show()
+
+    def hastighedsgraf(self):
+        fig, ax = plt.subplots()
+        ax.plot(Differential.xvalues, Differential.list, 'black', linewidth=2)
+        plt.xlabel('t(s)')
+        plt.ylabel('v(m/s)')
+        ax.xaxis.label.set_color('black')
+        ax.yaxis.label.set_color('black')
+        plt.show()

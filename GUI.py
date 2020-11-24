@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox, ttk
 
-
 class GUI(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
@@ -97,3 +96,4 @@ class GUI(tk.Frame):
 root = tk.Tk()
 app = GUI(master=root)
 app.mainloop()
+
