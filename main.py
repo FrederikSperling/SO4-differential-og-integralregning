@@ -1,6 +1,5 @@
 from integralregning import Integralregning
 from Differentialregning import Differentialregning
-from plot import graf
 import matplotlib.pyplot as plt
 import numpy as np
 from tkinter import *
@@ -113,11 +112,10 @@ class GUI():
 
     def integralgraf(self):
         print(self.Integral.area(self.integral_forskrift))
-        graf1 = graf()
         xvalues = np.linspace(self.Integral.a - self.Integral.b * 0.5, self.Integral.b * 1.5)
         plt.plot(xvalues, app.yvalues(xvalues, True, False, False, False))
-        graf1.xlabel(True, 'x', 'black')
-        graf1.ylabel(True, 'y', 'black')
+        plt.xlabel('x', color='red')
+        plt.ylabel('y', color='red')
         plt.vlines(x=[self.Integral.a, self.Integral.b], ymin=0, ymax=[float(self.Integral.func(self.Integral.a, self.integral_forskrift)), float(self.Integral.func(self.Integral.b, self.integral_forskrift))], colors='blue')
         xvaluesfill = np.linspace(self.Integral.a, self.Integral.b)
         newyvaluesfill = np.array(app.yvalues(xvaluesfill, True, False, False, False), dtype=float)
@@ -132,10 +130,14 @@ class GUI():
         plt.plot(self.Differential.x, self.Differential.func(self.Differential.x, self.diff_forskrift), 'r', marker='o', alpha=1)
         plt.plot(xvalues, app.yvalues(xvalues, False, False, True, False), 'black')
         plt.text(self.Differential.x, self.Differential.func(self.Differential.x * 0.7, self.diff_forskrift), "Hældningen for punktet er " + str(self.Differential.slopeforpoint(deltax, self.diff_forskrift, float(self.x))), horizontalalignment='center', fontsize=10)
+        plt.xlabel('x', color='red')
+        plt.ylabel('y', color='red')
         plt.show()
 
         #Her kommer grafen for hastighederne ud fra alle hældningerne på grafen.
         plt.plot(xvalues, app.yvalues(xvalues, False, False, False, True))
+        plt.xlabel('x', color='red')
+        plt.ylabel('y', color='red')
         plt.show()
 
     def yvalues(self, linspace, inte, diff, difftangent, slopes):
