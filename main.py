@@ -115,7 +115,7 @@ class GUI():
         print(self.Integral.area(self.integral_forskrift))
         graf1 = graf()
         xvalues = np.linspace(self.Integral.a - self.Integral.b * 0.5, self.Integral.b * 1.5)
-        plt.plot(xvalues, app.yvalues(xvalues, True, False, False))
+        plt.plot(xvalues, app.yvalues(xvalues, True, False, False, False))
         graf1.xlabel(True, 'x', 'black')
         graf1.ylabel(True, 'y', 'black')
         plt.vlines(x=[self.Integral.a, self.Integral.b], ymin=0, ymax=[float(self.Integral.func(self.Integral.a, self.integral_forskrift)), float(self.Integral.func(self.Integral.b, self.integral_forskrift))], colors='blue')
@@ -142,7 +142,8 @@ class GUI():
         xvalues = linspace
         yvalueslist = []
         listpos = 0
-        x = float(self.x)
+        if slopes == True:
+            x = float(self.x)
         for values in xvalues:
             if inte == True:
                 yvalueslist.append(self.Integral.func(xvalues[listpos], self.integral_forskrift))

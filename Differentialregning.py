@@ -18,7 +18,6 @@ class Differentialregning:
         self.DeltaX = DeltaX
         #self.inputpol = input("Enter differential polynomial here")
         n = 0
-
         # Vi bruger linjens ligning mellem 2 punkter for at finde hældningen på den linje der går igennem x og x + DeltaX
         while True:
             self.a = (self.func(self.x + self.DeltaX, forskrift) - self.func(self.x, forskrift)) / ((self.x + self.DeltaX) - self.x)
