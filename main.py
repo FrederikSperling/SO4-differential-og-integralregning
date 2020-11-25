@@ -3,7 +3,7 @@ from Differentialregning import Differentialregning
 import matplotlib.pyplot as plt
 import numpy as np
 from tkinter import *
-from tkinter import messagebox, ttk
+from tkinter import messagebox
 
 root = Tk()
 
@@ -68,7 +68,6 @@ class GUI():
             messagebox.showwarning(title=None, message="Du skal indtaste det første tal for dit interval")
         if len(self.b) == 0:
             messagebox.showwarning(title=None, message="Du skal indtaste det andet tal for dit interval")
-        # Vi laver root.destroy() tilsidst for ellers kunne vi ikke køre vores andre scripts i vores main.
         root.destroy()
         self.Integral = Integralregning(float(self.a), float(self.b), int(self.steger))
         self.integralgraf()
@@ -101,7 +100,6 @@ class GUI():
             messagebox.showwarning(title=None, message="Du skal indtaste en funktion")
         if len(self.x) == 0:
             messagebox.showwarning(title=None, message="Du skal indtaste en x-værdi")
-        # print("Antallet af streger:", self.diff_forskrift, "\nFunktionsforskrift:", self.x)
         root.destroy()
         self.Differential = Differentialregning()
         self.Differential.slopeforpoint(7, self.diff_forskrift, float(self.x))
