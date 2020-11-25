@@ -7,6 +7,7 @@ from matplotlib.figure import Figure
 import numpy as np
 from tkinter import *
 from tkinter import messagebox
+import sympy
 matplotlib.use("TkAgg")
 
 
@@ -193,21 +194,15 @@ class GUI():
     def yvalues(self, linspace, inte, diff, difftangent, slopes):
         xvalues = linspace
         yvalueslist = []
-        listpos = 0
-        if slopes == True:
-            x = float(self.x)
         for values in xvalues:
             if inte == True:
-                yvalueslist.append(self.Integral.func(xvalues[listpos], self.integral_forskrift))
+                yvalueslist.append(self.Integral.func(values, self.integral_forskrift))
             if diff == True:
-                yvalueslist.append(self.Differential.func(xvalues[listpos], self.diff_forskrift))
+                yvalueslist.append(self.Differential.func(values, self.diff_forskrift))
             if difftangent == True:
-                yvalueslist.append(self.Differential.tangent(xvalues[listpos]))
+                yvalueslist.append(self.Differential.tangent(values))
             if slopes == True:
-                yvalueslist.append(self.Differential.slopeforpoint(7, self.diff_forskrift, int(x)))
-                x +=1
-
-            listpos += 1
+                yvalueslist.append(self.Differential.slopeforpoint(7, self.diff_forskrift, int(values)))
         return yvalueslist
 
 app = GUI()
