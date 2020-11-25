@@ -1,9 +1,8 @@
 import sympy
 
 class Differentialregning:
-    def __init__(self, x):
-        self.x = x
-
+    def __init__(self,):
+        pass
 
     # Metode der styrer hvilken formel vi skal bruge.
 
@@ -14,7 +13,8 @@ class Differentialregning:
     def tangent(self, x):
         return self.a * x + self.b
 
-    def slopeforpoint(self, DeltaX, forskrift):
+    def slopeforpoint(self, DeltaX, forskrift, x):
+        self.x = x
         self.DeltaX = DeltaX
         #self.inputpol = input("Enter differential polynomial here")
         n = 0

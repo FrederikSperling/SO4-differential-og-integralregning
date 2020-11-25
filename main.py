@@ -104,8 +104,8 @@ class GUI():
             messagebox.showwarning(title=None, message="Du skal indtaste en x-værdi")
         # print("Antallet af streger:", self.diff_forskrift, "\nFunktionsforskrift:", self.x)
         root.destroy()
-        self.Differential = Differentialregning(int(self.x))
-        self.Differential.slopeforpoint(7, self.diff_forskrift)
+        self.Differential = Differentialregning()
+        self.Differential.slopeforpoint(7, self.diff_forskrift, float(self.x))
         self.differentialgraf()
 
     def afslut(self):
@@ -120,7 +120,7 @@ class GUI():
         graf1.ylabel(True, 'y', 'black')
         plt.vlines(x=[self.Integral.a, self.Integral.b], ymin=0, ymax=[float(self.Integral.func(self.Integral.a, self.integral_forskrift)), float(self.Integral.func(self.Integral.b, self.integral_forskrift))], colors='blue')
         xvaluesfill = np.linspace(self.Integral.a, self.Integral.b)
-        newyvaluesfill = np.array(app.yvalues(xvaluesfill, True, False, False), dtype=float)
+        newyvaluesfill = np.array(app.yvalues(xvaluesfill, True, False, False, False), dtype=float)
         plt.text(0.5 * (self.Integral.a + self.Integral.b), self.Integral.func(self.Integral.b - self.Integral.a, self.integral_forskrift), r"Areal er: "+str(self.Integral.area(self.integral_forskrift)), ha='center', va='center', fontsize=10)
         plt.fill_between(xvaluesfill, newyvaluesfill, 0, color='blue', alpha=0.2)
         plt.show()
@@ -128,26 +128,21 @@ class GUI():
     def differentialgraf(self):
         deltax = 7
         xvalues = np.linspace(self.Differential.x - 100, self.Differential.x + 100)
-        plt.plot(xvalues, app.yvalues(xvalues, False, True, False), 'black')
+        plt.plot(xvalues, app.yvalues(xvalues, False, True, False, False), 'black')
         plt.plot(self.Differential.x, self.Differential.func(self.Differential.x, self.diff_forskrift), 'r', marker='o', alpha=1)
-        plt.plot(xvalues, app.yvalues(xvalues, False, False, True), 'black')
-        plt.text(self.Differential.x, self.Differential.func(self.Differential.x * 0.7, self.diff_forskrift), "Hældningen for punktet er " + str(self.Differential.slopeforpoint(deltax, self.diff_forskrift)), horizontalalignment='center', fontsize=10)
+        plt.plot(xvalues, app.yvalues(xvalues, False, False, True, False), 'black')
+        plt.text(self.Differential.x, self.Differential.func(self.Differential.x * 0.7, self.diff_forskrift), "Hældningen for punktet er " + str(self.Differential.slopeforpoint(deltax, self.diff_forskrift, float(self.x))), horizontalalignment='center', fontsize=10)
         plt.show()
 
         #Her kommer grafen for hastighederne ud fra alle hældningerne på grafen.
-
-        listofslopes = []
-        x = int(self.x)
-        for value in xvalues:
-            x += 1
-            listofslopes.append(self.Differential.slopeforpoint(deltax, self.diff_forskrift))
-        plt.plot(xvalues, listofslopes)
+        plt.plot(xvalues, app.yvalues(xvalues, False, False, False, True))
         plt.show()
 
-    def yvalues(self, linspace, inte, diff, difftangent):
+    def yvalues(self, linspace, inte, diff, difftangent, slopes):
         xvalues = linspace
         yvalueslist = []
         listpos = 0
+        x = float(self.x)
         for values in xvalues:
             if inte == True:
                 yvalueslist.append(self.Integral.func(xvalues[listpos], self.integral_forskrift))
@@ -155,6 +150,10 @@ class GUI():
                 yvalueslist.append(self.Differential.func(xvalues[listpos], self.diff_forskrift))
             if difftangent == True:
                 yvalueslist.append(self.Differential.tangent(xvalues[listpos]))
+            if slopes == True:
+                yvalueslist.append(self.Differential.slopeforpoint(7, self.diff_forskrift, int(x)))
+                x +=1
+
             listpos += 1
         return yvalueslist
 
