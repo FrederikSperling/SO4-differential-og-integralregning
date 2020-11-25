@@ -8,7 +8,6 @@ class Integralregning():
 
     def func(self, x, forskrift):
         fx = sympy.sympify(forskrift).subs(dict(x=x))
-        self.forskrift = forskrift
         return fx
 
     def area(self, forskrift):
