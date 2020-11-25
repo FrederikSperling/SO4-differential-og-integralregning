@@ -66,16 +66,38 @@ class GUI():
         self.b = self.interval2.get()
 
         # Fejlmeddelse der checker om brugeren har indtastet et input
-        if len(self.steger) == 0:
+        if len(str(self.steger)) == 0:
             messagebox.showwarning(title=None, message="Du skal angive antallet af søjler")
+        else:
+            try:
+                self.steger = int(self.steger)
+            except:
+                messagebox.showwarning(title=None, message="Søglerne skal være en integer")
+
         if len(self.integral_forskrift) == 0:
             messagebox.showwarning(title=None, message="Du skal indtaste en funktionsforskrift")
-        if len(self.a) == 0:
+
+        if len(str(self.a)) == 0:
             messagebox.showwarning(title=None, message="Du skal indtaste det første tal for dit interval")
-        if len(self.b) == 0:
+        else:
+            try:
+                self.a = float(self.a)
+            except:
+                messagebox.showwarning(title=None, message="Intervallet skal være en float")
+
+        if len(str(self.b)) == 0:
             messagebox.showwarning(title=None, message="Du skal indtaste det andet tal for dit interval")
-        self.Integral = Integralregning(float(self.a), float(self.b), int(self.steger))
-        self.integralgraf()
+        else:
+            try:
+                self.b = float(self.b)
+            except:
+                messagebox.showwarning(title=None, message="Intervallet skal være en float")
+        try:
+            self.Integral = Integralregning(float(self.a), float(self.b), int(self.steger))
+            self.integralgraf()
+        except:
+            messagebox.showwarning(title=None, message="Ingen strings udover (), /, *, x i funktionsforskriften")
+
 
     def on_differentialregning(self):
         self.differentialwindow = Toplevel(root)
@@ -105,11 +127,20 @@ class GUI():
         self.x = self.indtast_x.get()
         if len(self.diff_forskrift) == 0:
             messagebox.showwarning(title=None, message="Du skal indtaste en funktion")
-        if len(self.x) == 0:
+        if len(str(self.x)) == 0:
             messagebox.showwarning(title=None, message="Du skal indtaste en x-værdi")
-        self.Differential = Differentialregning()
-        self.Differential.slopeforpoint(7, self.diff_forskrift, float(self.x))
-        self.differentialgraf()
+        else:
+            try:
+                self.x = float(self.x)
+            except:
+                messagebox.showwarning(title=None, message="x skal være en float/integer")
+
+        try:
+            self.Differential = Differentialregning()
+            self.Differential.slopeforpoint(7, self.diff_forskrift, float(self.x))
+            self.differentialgraf()
+        except:
+            messagebox.showwarning(title=None, message="Ingen strings udover (), /, *, x i funktionsforskriften")
 
     def afslut(self):
         quit()
