@@ -1,9 +1,14 @@
 from integralregning import Integralregning
 from Differentialregning import Differentialregning
+import matplotlib
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
+from matplotlib.figure import Figure
 import numpy as np
 from tkinter import *
 from tkinter import messagebox
+matplotlib.use("TkAgg")
+
 
 root = Tk()
 
@@ -23,6 +28,7 @@ class GUI():
         # Afslut
         afslut = Button(root, text="AFSLUT", command=root.destroy, padx=10, pady=10, fg="red")
         afslut.pack()
+
 
     def on_integral(self):
         self.integralwindow = Toplevel(root)
@@ -68,7 +74,6 @@ class GUI():
             messagebox.showwarning(title=None, message="Du skal indtaste det første tal for dit interval")
         if len(self.b) == 0:
             messagebox.showwarning(title=None, message="Du skal indtaste det andet tal for dit interval")
-        root.destroy()
         self.Integral = Integralregning(float(self.a), float(self.b), int(self.steger))
         self.integralgraf()
 
@@ -89,6 +94,8 @@ class GUI():
         # Knap for beregning af differentialregning
         self.beregn_diff = Button(self.differentialwindow, fg="green", text="Beregn", command=self.on_beregn_diff,
                                      padx=10, pady=10).pack()
+        # Knap til hastighedsgrafen
+        Hastighedsgrafbutton = Button(self.differentialwindow, fg="green", text="Hastighedsgraf", command=self.hastighedsgraf).pack()
         # Knap der tager dig tilbage til hovedmenuen
         Button(self.differentialwindow, text="Tilbage til hovedmenu", command=self.differentialwindow.destroy,
                   fg="red").pack()
@@ -100,7 +107,6 @@ class GUI():
             messagebox.showwarning(title=None, message="Du skal indtaste en funktion")
         if len(self.x) == 0:
             messagebox.showwarning(title=None, message="Du skal indtaste en x-værdi")
-        root.destroy()
         self.Differential = Differentialregning()
         self.Differential.slopeforpoint(7, self.diff_forskrift, float(self.x))
         self.differentialgraf()
@@ -109,19 +115,23 @@ class GUI():
         quit()
 
     def integralgraf(self):
+        plt.subplot(1, 1, 1)
         print(self.Integral.area(self.integral_forskrift))
         xvalues = np.linspace(self.Integral.a - self.Integral.b * 0.5, self.Integral.b * 1.5)
         plt.plot(xvalues, app.yvalues(xvalues, True, False, False, False))
         plt.xlabel('x', color='red')
         plt.ylabel('y', color='red')
-        plt.vlines(x=[self.Integral.a, self.Integral.b], ymin=0, ymax=[float(self.Integral.func(self.Integral.a, self.integral_forskrift)), float(self.Integral.func(self.Integral.b, self.integral_forskrift))], colors='blue')
+        plt.vlines(x=[self.Integral.a, self.Integral.b], ymin=0, ymax=[float(self.Integral.func(self.Integral.a, self.integral_forskrift)), float(self.Integral.func(self.Integral.b, self.integral_forskrift))], colors='blue', label='a')
         xvaluesfill = np.linspace(self.Integral.a, self.Integral.b)
         newyvaluesfill = np.array(app.yvalues(xvaluesfill, True, False, False, False), dtype=float)
         plt.text(0.5 * (self.Integral.a + self.Integral.b), self.Integral.func(self.Integral.b - self.Integral.a, self.integral_forskrift), r"Areal er: "+str(self.Integral.area(self.integral_forskrift)), ha='center', va='center', fontsize=10)
         plt.fill_between(xvaluesfill, newyvaluesfill, 0, color='blue', alpha=0.2)
+        plt.title("Integralregning")
+        plt.grid(which=BOTH, color='grey')
         plt.show()
 
     def differentialgraf(self):
+        plt.subplot(2, 1, 1)
         deltax = 7
         xvalues = np.linspace(self.Differential.x - 100, self.Differential.x + 100)
         plt.plot(xvalues, app.yvalues(xvalues, False, True, False, False), 'black')
@@ -130,13 +140,24 @@ class GUI():
         plt.text(self.Differential.x, self.Differential.func(self.Differential.x * 0.7, self.diff_forskrift), "Hældningen for punktet er " + str(self.Differential.slopeforpoint(deltax, self.diff_forskrift, float(self.x))), horizontalalignment='center', fontsize=10)
         plt.xlabel('x', color='red')
         plt.ylabel('y', color='red')
+        plt.title("Differentialregning")
+        plt.grid(which=BOTH, color='grey')
         plt.show()
+        #Den viser ikke anden graf need fix
 
-        #Her kommer grafen for hastighederne ud fra alle hældningerne på grafen.
-        plt.plot(xvalues, app.yvalues(xvalues, False, False, False, True))
-        plt.xlabel('x', color='red')
-        plt.ylabel('y', color='red')
-        plt.show()
+    def hastighedsgraf(self):
+        try:
+            plt.subplot(2, 1, 2)
+            #Her kommer grafen for hastighederne ud fra alle hældningerne på grafen.'
+            xvalues = np.linspace(self.Differential.x - 100, self.Differential.x + 100)
+            plt.plot(xvalues, app.yvalues(xvalues, False, False, False, True))
+            plt.xlabel('x', color='red')
+            plt.ylabel('y', color='red')
+            plt.title("Kurve med hældninger fra differentialregning")
+            plt.grid(which=BOTH, color='grey')
+            plt.show()
+        except:
+            messagebox.showwarning(title=None, message="Du kan ikke bruge denne knap før du har brugt beregn knappen")
 
     def yvalues(self, linspace, inte, diff, difftangent, slopes):
         xvalues = linspace
