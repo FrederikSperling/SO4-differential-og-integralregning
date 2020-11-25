@@ -7,9 +7,9 @@ class Integralregning():
         self.columns = columns
 
     def func(self, x, forskrift):
-        y = sympy.sympify(forskrift).subs(dict(x=x))
+        fx = sympy.sympify(forskrift).subs(dict(x=x))
         self.forskrift = forskrift
-        return y
+        return fx
 
     def area(self, forskrift):
         self.areaoffunc = 0
