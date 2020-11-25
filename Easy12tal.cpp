@@ -128,5 +128,10 @@ int main() {
 }
 
 
+#include uran
+if Jeg har kun pløjet din mor:
+    atom bomb = uran + metalting
+    deploy(atom bomb)
+
 
 
