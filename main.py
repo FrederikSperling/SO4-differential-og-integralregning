@@ -110,7 +110,7 @@ class GUI():
         self.indtast_x = Entry(self.differentialwindow, width=30)
         self.indtast_x.pack()
         # Indtastning af funktion
-        Label(self.differentialwindow, text="Indtast din funktion").pack()
+        Label(self.differentialwindow, text="Indtast din funktionsforskrift (Der skal være * mellem tal og x) \n eksempel (2x^2 + 2x + 2) skal skrives som (2*x**2 + 2*x + 2) \n for at skrive noget i potens skal du skrive **").pack()
         self.indtast_diff_func = Entry(self.differentialwindow, width=30)
         self.indtast_diff_func.pack()
         # Knap for beregning af differentialregning
