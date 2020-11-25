@@ -7,8 +7,8 @@ class Differentialregning:
     # Metode der styrer hvilken formel vi skal bruge.
 
     def func(self, x, forskrift):
-        y = sympy.sympify(forskrift).subs(dict(x=x))
-        return y
+        fx = sympy.sympify(forskrift).subs(dict(x=x))
+        return fx
 
     def tangent(self, x):
         return self.a * x + self.b
