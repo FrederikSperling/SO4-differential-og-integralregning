@@ -136,12 +136,12 @@ class GUI():
             except:
                 messagebox.showwarning(title=None, message="x skal være en float/integer")
 
-        try:
-            self.Differential = Differentialregning()
-            self.Differential.slopeforpoint(7, self.diff_forskrift, float(self.x))
-            self.differentialgraf()
-        except:
-            messagebox.showwarning(title=None, message="Ingen strings udover (), /, *, x i funktionsforskriften")
+        #try:
+        self.Differential = Differentialregning()
+        self.Differential.slopeforpoint(7, self.diff_forskrift, float(self.x))
+        self.differentialgraf()
+        #except:
+            #messagebox.showwarning(title=None, message="Ingen strings udover (), /, *, x i funktionsforskriften")
 
     def afslut(self):
         quit()
@@ -150,14 +150,16 @@ class GUI():
         plt.subplot(1, 1, 1)
         print(self.Integral.area(self.integral_forskrift))
         xvalues = np.linspace(self.Integral.a - self.Integral.b * 0.5, self.Integral.b * 1.5)
-        plt.plot(xvalues, app.yvalues(xvalues, True, False, False, False))
+        yvalues = [sympy.sympify(self.integral_forskrift).subs(dict(x=x)) for x in xvalues]
+        plt.plot(xvalues, yvalues)
         plt.xlabel('x', color='red')
         plt.ylabel('y', color='red')
         plt.vlines(x=[self.Integral.a, self.Integral.b], ymin=0, ymax=[float(self.Integral.func(self.Integral.a, self.integral_forskrift)), float(self.Integral.func(self.Integral.b, self.integral_forskrift))], colors='blue', label='a')
         xvaluesfill = np.linspace(self.Integral.a, self.Integral.b)
-        newyvaluesfill = np.array(app.yvalues(xvaluesfill, True, False, False, False), dtype=float)
+        yvaluesfill = [sympy.sympify(self.integral_forskrift).subs(dict(x=x)) for x in xvaluesfill]
+        xvaluesfillarray = np.array(yvaluesfill, dtype=float)
         plt.text(0.5 * (self.Integral.a + self.Integral.b), self.Integral.func(self.Integral.b - self.Integral.a, self.integral_forskrift), r"Areal er: "+str(self.Integral.area(self.integral_forskrift)), ha='center', va='center', fontsize=10)
-        plt.fill_between(xvaluesfill, newyvaluesfill, 0, color='blue', alpha=0.2)
+        plt.fill_between(xvaluesfill, xvaluesfillarray, 0, color='blue', alpha=0.2)
         plt.title("Integralregning")
         plt.grid(which=BOTH, color='grey')
         plt.show()
@@ -166,9 +168,12 @@ class GUI():
         plt.subplot(2, 1, 1)
         deltax = 7
         xvalues = np.linspace(self.Differential.x - 100, self.Differential.x + 100)
-        plt.plot(xvalues, app.yvalues(xvalues, False, True, False, False), 'black')
+        yvalues = [sympy.sympify(self.diff_forskrift).subs(dict(x=x)) for x in xvalues]
+        plt.plot(xvalues, yvalues, 'black')
         plt.plot(self.Differential.x, self.Differential.func(self.Differential.x, self.diff_forskrift), 'r', marker='o', alpha=1)
-        plt.plot(xvalues, app.yvalues(xvalues, False, False, True, False), 'black')
+
+        yvaluestangent = [self.Differential.a * x + self.Differential.b for x in xvalues]
+        plt.plot(xvalues, yvaluestangent, 'black')
         plt.text(self.Differential.x, self.Differential.func(self.Differential.x * 0.7, self.diff_forskrift), "Hældningen for punktet er " + str(self.Differential.slopeforpoint(deltax, self.diff_forskrift, float(self.x))), horizontalalignment='center', fontsize=10)
         plt.xlabel('x', color='red')
         plt.ylabel('y', color='red')
@@ -182,7 +187,7 @@ class GUI():
             plt.subplot(2, 1, 2)
             #Her kommer grafen for hastighederne ud fra alle hældningerne på grafen.'
             xvalues = np.linspace(self.Differential.x - 100, self.Differential.x + 100)
-            plt.plot(xvalues, app.yvalues(xvalues, False, False, False, True))
+            plt.plot(xvalues, app.yvalues(xvalues))
             plt.xlabel('x', color='red')
             plt.ylabel('y', color='red')
             plt.title("Kurve med hældninger fra differentialregning")
@@ -191,17 +196,10 @@ class GUI():
         except:
             messagebox.showwarning(title=None, message="Du kan ikke bruge denne knap før du har brugt beregn knappen")
 
-    def yvalues(self, linspace, inte, diff, difftangent, slopes):
+    def yvalues(self, linspace):
         xvalues = linspace
         yvalueslist = []
         for values in xvalues:
-            if inte == True:
-                yvalueslist.append(self.Integral.func(values, self.integral_forskrift))
-            if diff == True:
-                yvalueslist.append(self.Differential.func(values, self.diff_forskrift))
-            if difftangent == True:
-                yvalueslist.append(self.Differential.tangent(values))
-            if slopes == True:
                 yvalueslist.append(self.Differential.slopeforpoint(7, self.diff_forskrift, int(values)))
         return yvalueslist
 
