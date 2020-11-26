@@ -15,7 +15,7 @@ root = Tk()
 
 class GUI():
     def __init__(self):
-        root.title("MainMenu")
+        root.title("Pog_main")
         root.geometry("400x300")
         self.label = Label(root, text="Velkommen til differential/integral lommeregneren\n Vælg en af af ovenstående muligheder")
         self.label.pack()
@@ -187,6 +187,7 @@ class GUI():
             plt.subplot(2, 1, 2)
             #Her kommer grafen for hastighederne ud fra alle hældningerne på grafen.'
             xvalues = np.linspace(self.Differential.x - 100, self.Differential.x + 100)
+            #Vi fik ikke lige lavet en listcomprehension til denne yværdi fordi vores hoved ikke lige kunne lave regnestykket og tiden.
             plt.plot(xvalues, app.yvalues(xvalues))
             plt.xlabel('x', color='red')
             plt.ylabel('y', color='red')
@@ -199,8 +200,10 @@ class GUI():
     def yvalues(self, linspace):
         xvalues = linspace
         yvalueslist = []
+        x = float(self.x)
         for values in xvalues:
-                yvalueslist.append(self.Differential.slopeforpoint(7, self.diff_forskrift, int(values)))
+            yvalueslist.append(self.Differential.slopeforpoint(7, self.diff_forskrift, int(x)))
+            x +=1
         return yvalueslist
 
 app = GUI()
